@@ -35,6 +35,7 @@ def main(pasos, borracho):
     simular_una_caminata(campo,borracho,pasos)
 
 if __name__ == '__main__':
+    
     pasos = 1000
     borracho = BorrachoTradicional(nombre='Jorge')
     drogado = DrogadoTradicional(nombre='Justin')
