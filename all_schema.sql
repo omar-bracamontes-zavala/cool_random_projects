@@ -38,3 +38,16 @@ JOIN (
 JOIN departments as d
   ON e.department_id = d.department_id
 ORDER BY d.department,e.salary DESC;
+-- A 2nd OPTION
+SELECT d.department, r.name, r.salary
+FROM (
+    SELECT *
+    FROM (
+        SELECT *,
+               RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS salary_rank
+        FROM kueski_challenge.employees
+    ) AS ranking_table
+) AS r
+    JOIN kueski_challenge.departments AS d
+    ON d.department_id = r.department_id
+WHERE salary_rank = 1;
